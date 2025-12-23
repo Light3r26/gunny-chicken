@@ -21,5 +21,15 @@ pkgs.mkShell {
   packages = [
     goEnv
     gomod2nix
+
+    pkgs.pkg-config
+    pkgs.libx11
+    pkgs.libxcursor
+    pkgs.libxrandr
+    pkgs.libxinerama
+    pkgs.libxi
+    pkgs.libxxf86vm
+    pkgs.mesa
+    pkgs.libGL
   ];
 }
