@@ -12,15 +12,19 @@
   ),
   mkGoEnv ? pkgs.mkGoEnv,
   gomod2nix ? pkgs.gomod2nix,
+  lib,
+  ...
 }:
 
-let
-  goEnv = mkGoEnv { pwd = ./.; };
-in
+#let
+  #goEnv = mkGoEnv { pwd = ./.; };
+#in
 pkgs.mkShell {
   packages = [
-    goEnv
+      #goEnv
     gomod2nix
+    pkgs.go
+    pkgs.gcc
 
     pkgs.pkg-config
     pkgs.libx11
@@ -31,5 +35,12 @@ pkgs.mkShell {
     pkgs.libxxf86vm
     pkgs.mesa
     pkgs.libGL
+    pkgs.xorg_sys_opengl
+  ];
+
+  LD_LIBRARY_PATH = lib.makeLibraryPath [
+    pkgs.libGL
+    pkgs.mesa
+    pkgs.xorg_sys_opengl
   ];
 }

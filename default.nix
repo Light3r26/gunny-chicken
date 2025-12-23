@@ -19,4 +19,20 @@ buildGoApplication {
   pwd = ./.;
   src = ./.;
   modules = ./gomod2nix.toml;
+
+  nativeBuildInputs = [
+    pkgs.pkg-config
+  ];
+
+  buildInputs = [
+    pkgs.libx11
+    pkgs.libxcursor
+    pkgs.libxrandr
+    pkgs.libxinerama
+    pkgs.libxi
+    pkgs.libxxf86vm
+    pkgs.mesa
+    pkgs.libGL
+  ];
+
 }
