@@ -1,6 +1,1 @@
 /gomod2nix-template
-./default.nix
-./flake.lock
-./flake.nix
-./gomod2nix.toml
-./shell.nix
