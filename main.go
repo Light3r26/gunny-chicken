@@ -20,8 +20,8 @@ const (
 	WALL_CREATION_SPEED     = 5 * TILE_PIXEL
 	WALL_DESTRUCTION        = 20 * TILE_PIXEL
 
-	LOGICAL_SCREEN_WIDTH  = TILE_PIXEL*N_SEGMENTI_WIDTH + BORDER_DISTANCE*2
-	LOGICAL_SCREEN_HEIGHT = TILE_PIXEL*N_SEGMENTI_HEIGHT + BORDER_DISTANCE*4
+	LOGICAL_SCREEN_WIDTH  = TILE_PIXEL * N_SEGMENTI_WIDTH + BORDER_DISTANCE * 2
+	LOGICAL_SCREEN_HEIGHT = TILE_PIXEL * N_SEGMENTI_HEIGHT + BORDER_DISTANCE * 4
 	HORIZONTAL            = 1
 	VERTICAL              = 0
 
@@ -82,14 +82,11 @@ func (w Wall) DrawWall(screen *ebiten.Image) {
 }
 func (c CollisionEntity) GetVertices() []Vector {
 	positions := make([]Vector, 4)
-	for i := range 4 {
-		positions = append(
-			positions, Vector{
-				c.X + c.Width*float64(i&2),
-				c.Y + c.Height*float64(i&1),
-			})
-
-	}
+	positions = append(positions, Vector(c.X, c.Y))
+	positions = append(positions, Vector(c.X + c.Width, c.Y))
+	positions = append(positions, Vector(c.X, c.Y + c. Height))
+	positions = append(positions, Vector(c.X + c.Width, c.Y + c.Height))
+	
 	return positions
 }
 func (cs CollisionEntity) CheckCollision(ct CollisionEntity) bool {
@@ -127,7 +124,7 @@ type Game struct {
 	Chickens []Chicken
 	Cursors Vector
 }
-func NewChiken() *Chicken{
+func NewChicken() *Chicken{
 	return &Chicken{
 	}
 
